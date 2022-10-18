@@ -7,8 +7,8 @@
 
 void TestSplitSentenceIntoWords()
 {
-  const char *sentence = "the fox jumps"
-  char **words = ["the", "fox", "jumps", NULL]
+  const char *sentence = "the fox jumps";
+  char **words = ["the", "fox", "jumps", NULL];
 	CU_ASSERT(SplitSentenceIntoWords(sentence) == words);
 }
 
