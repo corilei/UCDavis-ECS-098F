@@ -9,7 +9,7 @@ void TestSplitSentenceIntoWords()
 {
   const char *sentence = "the fox jumps";
   char *words[] = {"the", "fox", "jumps", NULL};
-	CU_ASSERT_EQUAL(SplitSentenceIntoWords(sentence) == words);
+	CU_ASSERT_EQUAL(sentence, words);
 }
 
 void TestWordHasOnlyLetters()
