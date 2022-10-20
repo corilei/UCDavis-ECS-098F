@@ -8,15 +8,61 @@
 #include <CUnit/Basic.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "translator_tools.h"
 
+//bool isWordsEqual(char **arr1, char **arr2)
+//{
+////  int arr1Count = sizeof(arr1) / sizeof(arr1[0]);
+////  int arr2Count = sizeof(arr2) / sizeof(arr2[0]);
+////  int arr1Count = strlen(arr1);
+////  int arr2Count = strlen(arr2);
+//  int arr1Count = 0;
+//  while(arr1[arr1Count] != NULL)
+//  {
+//    arr1Count ++;
+//  }
+//  int arr2Count = 0;
+//  while(arr2[arr1Count] != NULL)
+//  {
+//    arr2Count ++;
+//  }
+//
+//  printf("%d %d", arr1Count, arr2Count);
+//
+//  if (arr1Count != arr2Count)
+//  {
+//    return false;
+//  }
+//  int i;
+//  for(i = 0; i < arr1Count; i++)
+//  {
+//    if (strcmp(arr1[i], arr2[i]) != 0)
+//    {
+//      return false;
+//    }
+//    i++;
+//  }
+//  return true;
+//}
+
 void TestSplitSentenceIntoWords()
 {
-  // TODO
-//  const char *sentence = "the fox jumps";
-//  char *words[] = {"the", "fox", "jumps", NULL};
-//	CU_ASSERT_EQUAL(SplitSentenceIntoWords(sentence), words);
+  const char *input = "the fox jumps";
+  char *except_output[] = {"the", "fox", "jumps", NULL};
+
+  char **real_output = malloc(sizeof(char*) * strlen(input));
+  real_output = SplitSentenceIntoWords(input);
+
+  printf("asdf: %s\n", real_output[3]);
+  printf("asdf: %s\n", except_output[3]);
+//  if (strcmp(real_output[3], except_output[3]) != 0){
+//    printf("asdfasdfasdfa");
+//  }
+//  printf("%d", strcmp(real_output[3], except_output[3]) != 0);
+
+//	CU_ASSERT(isWordsEqual(except_output, real_output));
 }
 
 void TestWordHasOnlyLetters()
@@ -34,9 +80,10 @@ void TestToLowerCase()
 {
   // Positive examples
   char *word2convert = "sIlLy";
+//  char *word2convert_copy = word2convert;
 //  ToLowerCase(word2convert);
 //  printf("%s", word2convert);
-//  CU_ASSERT((strcmp(word2convert, "the") == 0));
+//  CU_ASSERT((strcmp("silly", "silly") == 0));
 //  CU_ASSERT((strcmp("the", "the") == 0));
 //  CU_ASSERT(WordHasOnlyLetters("fox"));
 //  CU_ASSERT(WordHasOnlyLetters("jumps"));s
@@ -64,19 +111,21 @@ void TestIsVowel()
 
 void TestGetConsonantCluster()
 {
-	// TODO
+  CU_ASSERT(strcmp(GetConsonantCluster("string"), "str")==0);
+  CU_ASSERT(strcmp(GetConsonantCluster("apple"), "")==0);
+  CU_ASSERT(strcmp(GetConsonantCluster("ps"), "ps")==0);
 }
 
 void TestStripString()
 {
-	// TODO
-  // StripString("foobarbaz", 3) == "barbaz"
-//  CU_ASSERT((StripString("foobarbaz", 3) == "barbaz"));
+  CU_ASSERT(strcmp(StripString("foobarbaz", 3), "barbaz")==0);
+  CU_ASSERT(strcmp(StripString("foobarbaz", 0), "foobarbaz")==0);
 }
 
 void TestStringConcat()
 {
-	// TODO
+  CU_ASSERT(strcmp(StringConcat("asd", "123"), "asd123")==0);
+  CU_ASSERT(strcmp(StringConcat("fly", "ing"), "flying")==0);
 }
 
 int main(void)
