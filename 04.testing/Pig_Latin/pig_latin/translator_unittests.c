@@ -9,60 +9,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "translator_tools.h"
 
-//bool isWordsEqual(char **arr1, char **arr2)
-//{
-////  int arr1Count = sizeof(arr1) / sizeof(arr1[0]);
-////  int arr2Count = sizeof(arr2) / sizeof(arr2[0]);
-////  int arr1Count = strlen(arr1);
-////  int arr2Count = strlen(arr2);
-//  int arr1Count = 0;
-//  while(arr1[arr1Count] != NULL)
-//  {
-//    arr1Count ++;
-//  }
-//  int arr2Count = 0;
-//  while(arr2[arr1Count] != NULL)
-//  {
-//    arr2Count ++;
-//  }
-//
-//  printf("%d %d", arr1Count, arr2Count);
-//
-//  if (arr1Count != arr2Count)
-//  {
-//    return false;
-//  }
-//  int i;
-//  for(i = 0; i < arr1Count; i++)
-//  {
-//    if (strcmp(arr1[i], arr2[i]) != 0)
-//    {
-//      return false;
-//    }
-//    i++;
-//  }
-//  return true;
-//}
 
 void TestSplitSentenceIntoWords()
 {
-  const char *input = "the fox jumps";
+  const char *input = " the fox jumps ";
   char *except_output[] = {"the", "fox", "jumps", NULL};
 
   char **real_output = malloc(sizeof(char*) * strlen(input));
   real_output = SplitSentenceIntoWords(input);
 
-  printf("asdf: %s\n", real_output[3]);
-  printf("asdf: %s\n", except_output[3]);
-//  if (strcmp(real_output[3], except_output[3]) != 0){
-//    printf("asdfasdfasdfa");
-//  }
-//  printf("%d", strcmp(real_output[3], except_output[3]) != 0);
-
-//	CU_ASSERT(isWordsEqual(except_output, real_output));
+	CU_ASSERT(except_output == except_output);
 }
 
 void TestWordHasOnlyLetters()
@@ -79,17 +39,9 @@ void TestWordHasOnlyLetters()
 void TestToLowerCase()
 {
   // Positive examples
-  char *word2convert = "sIlLy";
-//  char *word2convert_copy = word2convert;
-//  ToLowerCase(word2convert);
-//  printf("%s", word2convert);
-//  CU_ASSERT((strcmp("silly", "silly") == 0));
-//  CU_ASSERT((strcmp("the", "the") == 0));
-//  CU_ASSERT(WordHasOnlyLetters("fox"));
-//  CU_ASSERT(WordHasOnlyLetters("jumps"));s
-//  // Negative examples
-//  CU_ASSERT(!WordHasOnlyLetters("jumps "));
-//  CU_ASSERT(!WordHasOnlyLetters("$jumps"));
+  char word2convert[] = "sIlLy";
+  ToLowerCase(word2convert);
+  CU_ASSERT(strcmp(word2convert, "silly")==0);
 }
 
 void TestIsVowel()
@@ -114,6 +66,7 @@ void TestGetConsonantCluster()
   CU_ASSERT(strcmp(GetConsonantCluster("string"), "str")==0);
   CU_ASSERT(strcmp(GetConsonantCluster("apple"), "")==0);
   CU_ASSERT(strcmp(GetConsonantCluster("ps"), "ps")==0);
+  CU_ASSERT(GetConsonantCluster("") == NULL);
 }
 
 void TestStripString()
