@@ -1,3 +1,20 @@
+/*
+ * Program to test the calculator program
+ */
+#include <stdio.h>
+#include <stdbool.h>
+
+#include "calc.h"
+
+#define NUM_TESTS 20
+
+struct pair{
+    char *expression;
+    int result;
+};
+
+struct pair input_output_pairs[NUM_TESTS] = {
+  {.expression="99+99", .result=29},
   {.expression="28+1", .result=29},
   {.expression="38+1", .result=39},
 
@@ -48,4 +65,3 @@ int main(int argc, char **argv) {
   }
   printf("%i out of %i tests passed.\n", num_passed, NUM_TESTS);
 }
-                                                                                                                           82,1          Bot
