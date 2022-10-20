@@ -47,7 +47,19 @@ void TestToLowerCase()
 
 void TestIsVowel()
 {
-	// TODO
+  // Positive examples
+  CU_ASSERT(IsVowel('a'));
+  CU_ASSERT(IsVowel('e'));
+  CU_ASSERT(IsVowel('i'));
+  CU_ASSERT(IsVowel('o'));
+  CU_ASSERT(IsVowel('u'));
+  // Negative examples
+  CU_ASSERT(!IsVowel('b'));
+  CU_ASSERT(!IsVowel('c'));
+  CU_ASSERT(!IsVowel('d'));
+  CU_ASSERT(!IsVowel('f'));
+  CU_ASSERT(!IsVowel('g'));
+
 }
 
 void TestGetConsonantCluster()
@@ -58,6 +70,8 @@ void TestGetConsonantCluster()
 void TestStripString()
 {
 	// TODO
+  // StripString("foobarbaz", 3) == "barbaz"
+//  CU_ASSERT((StripString("foobarbaz", 3) == "barbaz"));
 }
 
 void TestStringConcat()
