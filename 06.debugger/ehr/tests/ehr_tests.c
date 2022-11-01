@@ -29,7 +29,7 @@ void TestPatient1()
         line_index++;
     }
 
-    // Assert that the program output had as many lines as the expected output 
+    // Assert that the program output had as many lines as the expected output
     CU_ASSERT(line_index == sizeof(expected_output) / sizeof(char*));
     // Assert that the program exited with code 0
     CU_ASSERT(pclose(output_stream) == 0)

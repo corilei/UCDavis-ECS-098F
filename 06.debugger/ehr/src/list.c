@@ -18,7 +18,7 @@ ssize_t ReadListItems(FILE *list_file, char ***list) {
         return 0;
     }
 
-    *list = malloc(num_items * sizeof(char*));
+    **list = malloc(num_items * sizeof(char*));
     size_t zero = 0;
     for(int i = 0; i < num_items; i++) {
         // Discard any leading whitespace
