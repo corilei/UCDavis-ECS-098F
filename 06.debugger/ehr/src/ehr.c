@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     all_patients = ReadAllPatients(argv[1], &num_patients);
 
     printf("Enter a patient's name: ");
-    char entered_name[16];
+    char entered_name[50];
     fgets(entered_name, sizeof(entered_name), stdin);
     // Discard the newline read by fgets
     entered_name[strcspn(entered_name, "\n")] = '\0';

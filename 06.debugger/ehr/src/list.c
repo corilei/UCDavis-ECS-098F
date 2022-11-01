@@ -31,7 +31,8 @@ ssize_t ReadListItems(FILE *list_file, char ***list) {
         }
         // getline will read a newline character if there is a proceeding line.
         // The newline character should not be part of the item, so we remove it.
-        item[length - 1] = '\0';
+        if(item[length - 1] == '\n')
+            item[length - 1] = '\0';
 
         (*list)[i] = item;
     }

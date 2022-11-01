@@ -81,8 +81,6 @@ void TestPatient3()
     char buffer[256];
     size_t line_index = 0;
     while(fgets(buffer, sizeof(buffer), output_stream) != NULL) {
-        printf("buffer:\n%s\n", buffer);
-        printf("%s\n", expected_output[line_index]);
         CU_ASSERT(strcmp(buffer, expected_output[line_index]) == 0);
         line_index++;
     }
