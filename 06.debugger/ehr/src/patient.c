@@ -22,7 +22,7 @@ int ReadSex(FILE *patient_file, enum Sex *sex) {
 
     switch (sex_code)
     {
-    case 'f':
+    case 'F':
         *sex = Female;
         break;
     case 'M':
