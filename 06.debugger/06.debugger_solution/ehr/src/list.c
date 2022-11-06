@@ -33,7 +33,7 @@ ssize_t ReadListItems(FILE *list_file, char ***list) {
         // The newline character should not be part of the item, so we remove it.
         item[length - 1] = '\0';
 
-        *list[i] = item;
+        (*list)[i] = item;
     }
     return num_items;
 }
