@@ -3,8 +3,6 @@
 current_file=""
 artistName=""
 songName=""
-#getArtistNameSuccess=true
-#getSongNameSuccess=true
 
 getArtistName() {
     # I wrote this one to take one argument and set a global variable to the
