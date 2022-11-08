@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# usage: bash field_validator.sh sample_test_cases/purchase_9
 
 current_file=""
 artistName=""
