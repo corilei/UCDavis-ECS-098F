@@ -11,7 +11,7 @@ while IFS= read -r line; do
     # You'll need to capture two pieces of data: the field name and the value of the field.
     # Put your regex with capture groups to the right of the =~ operator
 #    if [[ $line =~ ^[[:space:]]+([[:word:]]+):[[:space:]]+(.+)$ ]]; then
-    if [[ $line =~ ^[[:space:]]{4}(.+):[[:space:]]{1}(.+)$ ]]; then
+    if [[ $line =~ ^[[:space:]]+(.+):[[:space:]]+(.*)$ ]]; then
         # Recall how to access text from regex capture groups
         # See slide 15 from the lecture
         field=${BASH_REMATCH[1]}
@@ -44,7 +44,7 @@ while IFS= read -r line; do
             pattern='^[A-Za-z]+[A-Za-z ]*$'
             ;;
         apartment_number) # 1 to 4 digits or the empty string
-            pattern='([0-9]{1,4}|[[:space:]])'
+            pattern='([0-9]{1,4}|[[:space:]]*)'
             ;;
         city) # String of alphabetic characters
             pattern='^[A-Za-z]+[A-Za-z ]*$'
@@ -54,12 +54,6 @@ while IFS= read -r line; do
             ;;
         zip) # 5 digits
             pattern='[0-9]{5}'
-            ;;
-        "    first_name") # String of alphanumeric characters
-            pattern='[[:alnum:]]+'
-            ;;
-        "    last_name") # String of alphanumeric characters
-            pattern='[[:alnum:]]+'
             ;;
         card_number) # 16 digits with every with a hyphen between every 4 digits
             pattern='^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
@@ -81,7 +75,7 @@ while IFS= read -r line; do
 
     if ! [[ $value =~ $pattern ]]; then
         # We need to print out a message if the field isn't valid
-        echo "the $field: $value isn't valid !"
+        echo "field $field with value $value is not valid"
         passed=false
     fi
         
