@@ -11,9 +11,18 @@ appendMode() {
     # $1: Section name
     # $2: New field name
     # $3: New field value
+
     section_name=$1
     new_field_name=$2
-    new_field_value=$3
+    # https://github.com/koalaman/shellcheck/wiki/SC2124
+    shift 2
+    new_field_value=$*
+
+    # ref: https://math2001.github.io/article/bashs-find-command/
+    # ref: https://www.thegeekstuff.com/2009/11/unix-sed-tutorial-append-insert-replace-and-count-file-lines/
+    # ref: https://www.cnblogs.com/exmyth/p/14582067.html
+    find . -path "$taget_dir/*.ini" -exec sed -i  "/$section_name/a $new_field_name=$new_field_value" \ {} \;
+    # find . -path "$taget_dir/*.ini" -exec sed -i  "s/totally_not_secret_user_data_collection/mac/g" {} \;
 
 
 }
@@ -23,6 +32,7 @@ deleteMode() {
     #
     # Args
     # $1: field_name
+    ls
 }
 
 subMode() {
@@ -31,6 +41,7 @@ subMode() {
     # Args
     # $1: field name
     # $2: new_value
+    ls
 }
 
 case $mode in
