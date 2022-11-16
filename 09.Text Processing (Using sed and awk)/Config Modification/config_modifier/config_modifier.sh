@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+# commands:
+# 1. bash config_modifier.sh sample_1 -a INFO project_owner Lex Luthor
+# 2. bash config_modifier.sh sample_1 -d port
+# 3. bash config_modifier.sh sample_1 -s email_host smtp.emezun.com
+
 taget_dir=$1
 mode=$2
 shift 2
@@ -21,8 +26,9 @@ appendMode() {
     # ref: https://math2001.github.io/article/bashs-find-command/
     # ref: https://www.thegeekstuff.com/2009/11/unix-sed-tutorial-append-insert-replace-and-count-file-lines/
     # ref: https://www.cnblogs.com/exmyth/p/14582067.html
-    find . -path "$taget_dir/*.ini" -exec sed -i  "/$section_name/a $new_field_name=$new_field_value" \ {} \;
-    # find . -path "$taget_dir/*.ini" -exec sed -i  "s/totally_not_secret_user_data_collection/mac/g" {} \;
+    # commands need run in linux.
+    # mac use gsed, linux use sed.
+    find . -path "*/$taget_dir/*.ini" -exec sed -i "/$section_name/a $new_field_name=$new_field_value" {} \;
 
 
 }
@@ -32,7 +38,11 @@ deleteMode() {
     #
     # Args
     # $1: field_name
-    ls
+
+    field_name=$1
+
+    find . -path "*/$taget_dir/*.ini" -exec sed -i "/$field_name/ d" {} \;
+
 }
 
 subMode() {
@@ -41,7 +51,14 @@ subMode() {
     # Args
     # $1: field name
     # $2: new_value
-    ls
+
+    field_name=$1
+    shift 1
+    new_field_value=$*
+
+#    find . -path "*/$taget_dir/*.ini" -exec gsed -i "s/[^$field_name$]/'$field_name = $new_field_value'/g" {} \;
+    find . -path "*/$taget_dir/*.ini" -exec sed -i "s/$field_name.*/$field_name = $new_field_value/g" {} \;
+
 }
 
 case $mode in
